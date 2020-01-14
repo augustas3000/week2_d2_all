@@ -15,7 +15,7 @@ class BusTest < Minitest::Test
     @person_obj_2 = Person.new("Dan", 48)
     @person_obj_3 = Person.new("Judy", 18)
 
-
+    # add persons to que here to avoid repetition later on?
 
   end
 

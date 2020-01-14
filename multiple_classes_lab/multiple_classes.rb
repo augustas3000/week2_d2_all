@@ -8,6 +8,8 @@ class Bus
     @route = route_number_int
     @destination = destination_str
     # Give the Bus class a new property, ‘passengers’. This should be an array, which starts off empty.
+
+    # never use attr_accessors... on arrays
     @passengers = []
   end
 
@@ -44,8 +46,8 @@ class Bus
 
   def pick_up_from_stop(bus_stop_obj)
 
-    for person_obj in bus_stop_obj.get_queue
-      @passengers.push(person_obj)
+    for person_obj in bus_stop_obj.get_queue()
+      add_passenger(person_obj)
     end
 
     bus_stop_obj.bus_stop_empty
@@ -87,7 +89,6 @@ class BusStop
   end
 
 
-
   def how_many_in_queue
     return @queue.length
   end
@@ -97,3 +98,18 @@ class BusStop
     @queue.push(person_obj)
   end
 end
+
+# bus_obj = Bus.new(22, "Ocean Terminal")
+# bus_stop_obj = BusStop.new("Victoria Station")
+#
+# person_obj = Person.new("Lee", 28)
+# person_obj_2 = Person.new("Dan", 48)
+# person_obj_3 = Person.new("Judy", 18)
+#
+# bus_stop_obj.add_person_to_queue(person_obj)
+# bus_stop_obj.add_person_to_queue(person_obj_2)
+# bus_stop_obj.add_person_to_queue(person_obj_3)
+#
+#
+# bus_obj.pick_up_from_stop(bus_stop_obj)
+# puts bus_obj.how_many_on_bus
