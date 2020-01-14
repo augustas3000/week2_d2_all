@@ -38,6 +38,20 @@ class Bus
     @passengers = []
   end
 
+  # Now imagine that our bus is travelling along the route. For now we will imagine that there is only one bus that goes on this route, so every passenger waiting at each stop wants to get on the bus.
+  #
+  # Try writing a method that the bus would call, to collect all of the passengers from a stop. This might look like bus.pick_up_from_stop(stop1). This should take all of the passengers waiting in line at the stop, and put them inside of the bus. So the stop will now have nobody in the queue, and the number of people on the bus will increase by however many people the stop had at it.
+
+  def pick_up_from_stop(bus_stop_obj)
+
+    for person_obj in bus_stop_obj.get_queue
+      @passengers.push(person_obj)
+    end
+
+    bus_stop_obj.bus_stop_empty
+
+  end
+
 end
 
 
@@ -51,4 +65,35 @@ class Person
     @age = age_int
   end
 
+end
+
+# Create a new class called BusStop.
+class BusStop
+
+  # This should have a name attribute.
+  def initialize(name_str)
+    @name = name_str
+
+      # Add an attribute to the BusStop called ‘queue’. This should be an empty array that will get filled with instances of the Person class:
+    @queue = []
+  end
+
+  def bus_stop_empty
+    @queue = []
+  end
+
+  def get_queue
+    return @queue
+  end
+
+
+
+  def how_many_in_queue
+    return @queue.length
+  end
+
+  # Add a method that adds a person to the queue
+  def add_person_to_queue(person_obj)
+    @queue.push(person_obj)
+  end
 end
